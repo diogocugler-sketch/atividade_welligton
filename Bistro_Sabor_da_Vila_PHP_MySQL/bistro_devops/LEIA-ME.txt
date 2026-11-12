@@ -1,0 +1,51 @@
+BISTRO SABOR DA VILA — PROJETO DIDÁTICO PHP + MYSQL
+
+FUNCIONALIDADES
+- Registro de comandas com número sequencial automático (baseado no ID).
+- Data/hora de abertura e de entrega.
+- Seleção de produtos, quantidades e preços predefinidos.
+- Total calculado por comanda.
+- Observação da cozinha, editável enquanto a comanda está aberta.
+- Marcação como entregue.
+- Cadastro, edição, ativação e desativação de produtos.
+- Dez produtos de exemplo incluídos no SQL.
+- PDO, consultas preparadas e escape de saída HTML.
+
+TESTE LOCAL (LARAGON OU XAMPP)
+1. Deixe a pasta do projeto dentro da pasta pública do servidor web e inicie Apache e MySQL.
+2. Abra a página inicial pelo endereço correspondente à pasta. No Laragon, se o projeto estiver
+   em C:\laragon\www\atividade_welligton\Bistro_Sabor_da_Vila_PHP_MySQL\bistro_devops, use:
+   http://localhost/atividade_welligton/Bistro_Sabor_da_Vila_PHP_MySQL/bistro_devops/
+3. Na primeira abertura, a aplicação cria o banco bistro_devops, as tabelas e dez produtos de
+   exemplo automaticamente. O usuário MySQL precisa ter permissão para criar banco e tabelas.
+4. Se preferir preparar o banco manualmente pelo phpMyAdmin, importe database.sql. A importação
+   pode ser repetida sem duplicar os produtos iniciais.
+5. Para gerenciar o cardápio: acrescente produtos.php ao endereço da aplicação.
+
+PUBLICAÇÃO NO INFINITYFREE
+1. Crie o banco MySQL pelo painel da hospedagem.
+2. Configure host, nome do banco, usuário e senha exibidos no painel em config/database.php
+   ou nas variáveis BISTRO_DB_HOST, BISTRO_DB_NAME, BISTRO_DB_USER e BISTRO_DB_PASS.
+   O host remoto normalmente não é localhost. Se a hospedagem não permitir criar banco via PHP,
+   crie-o pelo painel antes do primeiro acesso.
+3. Selecione o banco no phpMyAdmin e importe database.sql. Se CREATE DATABASE/USE
+   não for permitido, remova essas instruções e importe o restante no banco selecionado.
+4. Envie o conteúdo da pasta bistro_devops para a pasta pública indicada no painel
+   (frequentemente htdocs). O index.php deve ficar na raiz pública.
+5. Teste cadastro de comanda, alteração de observação, entrega e cadastro de produtos.
+
+ESTRUTURA
+index.php              Painel de comandas
+produtos.php           Cadastro e edição do cardápio
+config/database.php    Conexão PDO
+database.sql           Tabelas e produtos de exemplo
+assets/style.css       Estilos responsivos
+
+NOTAS
+- O número da comanda acompanha o ID sequencial do banco. Podem existir saltos se uma
+  operação falhar; isso é normal em bancos SQL.
+- O preço do item é copiado para a comanda e não muda se o preço do produto for alterado.
+- Produtos inativos não aparecem em novas comandas, mas continuam no histórico.
+- Sem login, conforme solicitado: use apenas como demonstração didática. Não use dados
+  reais nem exponha como sistema de produção sem implementar autenticação e autorização.
+- Não publique credenciais reais em repositório público.
